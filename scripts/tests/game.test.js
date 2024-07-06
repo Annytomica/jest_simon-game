@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { game, newGame } = require("../game");
+const { game, newGame, showScore } = require("../game");
 
 beforeAll(() => {
     let fs = require('fs'); //load the 'fs' file system handling module that is built into node.js
@@ -37,6 +37,7 @@ describe('newGame works correctly', () => {
         game.score = 42;
         game.playerMoves = ['button1', 'button3'];
         game.currentGame = ['button1', 'button2'];
+        document.getElementById('score').innerText = '42';
         newGame(); // calls new game function so can test outcome
     });
     test('should set game score to zero', () => {
@@ -47,5 +48,8 @@ describe('newGame works correctly', () => {
     });
     test('should set currentGame Array to empty', () => {
         expect(game.currentGame).toEqual([]);
+    });
+    test('should display 0 for element with id of score', () => {
+        expect(document.getElementById('score').innerText).toEqual(0);
     });
 });

@@ -23,5 +23,13 @@ function addTurn() {
     // showTurns();
 }
 
-module.exports = { game, newGame, showScore, addTurn }; // use {} if expecting to export more than one object and function from file
+function lightsOn(circ) {
+    document.getElementById(circ).classList.add('light');
+    // sets a delay before the action is carried out, here is 400ms
+    setTimeout(() => {
+        document.getElementById(circ).classList.remove('light');
+    }, 400);
+}
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn }; // use {} if expecting to export more than one object and function from file
 

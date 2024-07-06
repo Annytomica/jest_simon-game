@@ -5,4 +5,9 @@ let game = {
     choices: ['button1', 'button2', 'button3', 'button4'],
 }
 
-module.exports = { game }; // use {} if expecting to export more than one object and function from file
+function newGame() {
+    game.score = 0;
+};
+
+module.exports = { game, newGame }; // use {} if expecting to export more than one object and function from file
+

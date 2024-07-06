@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { game } = require('../game');
+const { game, newGame } = require("../game");
 
 beforeAll(() => {
     let fs = require('fs'); //load the 'fs' file system handling module that is built into node.js
@@ -28,5 +28,16 @@ describe('game object contains correct keys', () => {
     });
     test('choices contains correct ids', () => {
         expect(game.choices).toEqual(['button1', 'button2', 'button3', 'button4']);
+    });
+});
+
+describe('newGame works correctly', () => {
+    //using before all to put values for each object element to test if they get cleared
+    beforeAll(() => {
+        game.score = 42;
+        newGame(); // calls new game function so can test outcome
+    });
+    test('should set game score to zero', () => {
+        expect(game.score).toEqual(0);
     });
 });

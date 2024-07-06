@@ -36,6 +36,7 @@ describe('newGame works correctly', () => {
     beforeAll(() => {
         game.score = 42;
         game.playerMoves = ['button1', 'button3'];
+        game.currentGame = ['button1', 'button2'];
         newGame(); // calls new game function so can test outcome
     });
     test('should set game score to zero', () => {
@@ -43,5 +44,8 @@ describe('newGame works correctly', () => {
     });
     test('should set playerMoves Array to empty', () => {
         expect(game.playerMoves).toEqual([]);
+    });
+    test('should set currentGame Array to empty', () => {
+        expect(game.currentGame).toEqual([]);
     });
 });

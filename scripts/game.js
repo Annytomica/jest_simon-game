@@ -7,6 +7,7 @@ let game = {
 
 function newGame() {
     game.score = 0;
+    game.playerMoves = [];
 };
 
 module.exports = { game, newGame }; // use {} if expecting to export more than one object and function from file

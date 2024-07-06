@@ -35,9 +35,13 @@ describe('newGame works correctly', () => {
     //using before all to put values for each object element to test if they get cleared
     beforeAll(() => {
         game.score = 42;
+        game.playerMoves = ['button1', 'button3'];
         newGame(); // calls new game function so can test outcome
     });
     test('should set game score to zero', () => {
         expect(game.score).toEqual(0);
+    });
+    test('should set playerMoves Array to empty', () => {
+        expect(game.playerMoves).toEqual([]);
     });
 });

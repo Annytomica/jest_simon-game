@@ -13,10 +13,13 @@ function newGame() {
     for(let circle of document.getElementsByClassName('circle')) {
         if (circle.getAttribute('data-listener') !== 'true') {
             circle.addEventListener('click', (e) => {
-                let move = e.target.getAttribute('id');
-                lightsOn(move);
-                game.playerMoves.push(move);
-                playerTurn();
+                if (game.currentGame.length > 0) { // checks if a game is in progress
+                    let move = e.target.getAttribute('id');
+                    game.lastButton = move; // saves last button pressed
+                    lightsOn(move);
+                    game.playerMoves.push(move);
+                    playerTurn();
+                };
             });
             circle.setAttribute('data-listener', 'true');
         }
@@ -44,12 +47,14 @@ function lightsOn(circ) {
 }
 
 function showTurns() {
+    game.tunrInProgress = true; // sets to true at start of new turn
     game.turnNumber = 0;
     let turns = setInterval(() => {
         lightsOn(game.currentGame[game.turnNumber]);
         game.turnNumber++;
-        if (game.turnNumber >= game.currentGame.length) {
+        if (game.turnNumber >= game.currentGame.length) { // checks if turn over and resets if yes
             clearInterval(turns);
+            game.tunrInProgress = false;
         }
     }, 800);
 }

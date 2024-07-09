@@ -2,6 +2,8 @@ let game = {
     score: 0,
     currentGame: [],
     playerMoves: [],
+    lastButton: '',
+    turnInProgress: false,
     turnNumber: 0,
     choices: ['button1', 'button2', 'button3', 'button4'],
 }
@@ -10,10 +12,11 @@ function newGame() {
     game.score = 0;
     game.playerMoves = [];
     game.currentGame = [];
+
     for(let circle of document.getElementsByClassName('circle')) {
         if (circle.getAttribute('data-listener') !== 'true') {
             circle.addEventListener('click', (e) => {
-                if (game.currentGame.length > 0) { // checks if a game is in progress
+                if (game.currentGame.length > 0 && !game.turnInProgress) { // checks if a game and turn is in progress
                     let move = e.target.getAttribute('id');
                     game.lastButton = move; // saves last button pressed
                     lightsOn(move);
@@ -47,7 +50,7 @@ function lightsOn(circ) {
 }
 
 function showTurns() {
-    game.tunrInProgress = true; // sets to true at start of new turn
+    game.turnInProgress = true; // sets to true at start of new turn
     game.turnNumber = 0;
     let turns = setInterval(() => {
         lightsOn(game.currentGame[game.turnNumber]);

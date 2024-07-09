@@ -54,5 +54,16 @@ function showTurns() {
     }, 800);
 }
 
-module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns }; // use {} if expecting to export more than one object and function from file
+function playerTurn() {
+    let i = game.playerMoves.length - 1;
+    if (game.currentGame[i] === game.playerMoves[i]) { // checks if player turn matches sequence
+        if (game.currentGame.length == game.playerMoves.length) { // checks if at end of sequence
+            game.score++;
+            showScore();
+            addTurn();
+        }
+    }
+}
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns, playerTurn }; // use {} if expecting to export more than one object and function from file
 
